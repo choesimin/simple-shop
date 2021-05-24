@@ -137,6 +137,7 @@ Note & Study
 	- https://developerhive.tistory.com/34
 	- 연결 안됨
 		- https://jamie95.tistory.com/171
+		- https://www.youtube.com/watch?v=YywLS8XdxLQ
 - Spring Boot
 - Thymeleaf
 	- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html		
