@@ -7,14 +7,35 @@
 <body>
 	<th:block th:replace="fragments/nav"></th:block>
 	<main>
-		lsadfjkasdf
-		<table>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>		
-		</table>
+		<form>
+			<h3>contactInfo</h3>
+			<input type="text" placeholder="contactEmail"/>
+			<input type="text" placeholder="contactName"/>
+			<input type="text" placeholder="mobile"/>
+			
+			<br/>
+			<br/>
+			<br/>
+			
+			<h3>Items</h3>
+			<table>
+				<tr th:each="num : ${#numbers.sequence(1, 5)}">
+					<td>
+						<input type="checkbox" />
+					</td>
+					<td>Food</td>
+					<td>Rice</td>
+					<td>
+						<input type="number" value="0" min="0"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		
+		<br/>
+		<br/>
+		
+		<button>Order</button>
 	</main>
 </body>
 </html>

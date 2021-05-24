@@ -8,6 +8,8 @@ public class HomeController {
 	
 	@GetMapping()
 	public String getHome() {
+		// Item List를 가져와서 보내주기
+		
 		return "home";
 	}
 	

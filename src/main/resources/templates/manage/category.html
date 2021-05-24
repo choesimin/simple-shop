@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:replace="fragments/header"></th:block>
+	<link href="/css/home.css" rel="stylesheet"/>
+</head>
+<body>
+	<th:block th:replace="fragments/nav"></th:block>
+	<main>
+		<h3>Add Category</h3>
+		<input type="text" placeholder="name" />
+		<button>Add</button>
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		
+		<h3>Delete Category</h3>
+		<table>
+			<tr th:each="num : ${#numbers.sequence(1, 5)}">
+				<td>Food</td>
+				<td>
+					<button>Delete</button>
+				</td>
+			</tr>
+		</table>
+	</main>
+</body>
+</html>
