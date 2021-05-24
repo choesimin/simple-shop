@@ -107,9 +107,10 @@ Trouble Shooting
 - H2 Database Connect
 	- Error: Database "mem:testdb" not found, either pre-create it or allow remote database creation (not recommended in secure environments) [90149-200]
 	- 원인 : 최근 버전의 경우, 보안상의 이유로 Web Console에서 새 database를 작성할 수 없음
-	- H2 프로그램을 별도로 설치하고 database를 직접 생성하기로 함
-	- 생성한 후, Web Console로 접속하면 Server mode로 connect 가능
-	- H2 Embedded mode는 여전히 불가능하며, 시간 관계상 H2 Server mode로 진행
+	- 해결
+		- 별도의 H2 프로그램 설치 및 접속 
+		- Spring Boot의 Server 실행 시 H2 Embedded로 접속할 수 있는 주소 받음 
+		- H2 Embedded에 주소 입력 후 접속
 
 
 ---
@@ -133,6 +134,9 @@ Note & Study
 		- https://dev-woo.tistory.com/45
 	- Initializing Database
 		- https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/htmlsingle/#howto-initialize-a-database-using-spring-jdbc
+	- Spring Boot + Mybatis + H2
+		- https://atoz-develop.tistory.com/entry/Spring-Boot-MyBatis-%EC%84%A4%EC%A0%95-%EB%B0%A9%EB%B2%95	
+
 - Thymeleaf
 	- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html		
 - 교차 출처 리소스 공유 (CORS) 설정
