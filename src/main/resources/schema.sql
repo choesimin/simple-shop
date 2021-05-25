@@ -13,7 +13,7 @@ create table item (
  , category_id int
  , name varchar(255) not null
  , stock int default 0
- , foreign key (category_id) references category(category_id)
+ , foreign key (category_id) references category(category_id) on delete cascade
 );
 
 create table orders (
@@ -22,7 +22,7 @@ create table orders (
  , email varchar(255) not null
  , name varchar(255) not null
  , mobile varchar(255) not null
- , foreign key (item_id) references item(item_id)
+ , foreign key (item_id) references item(item_id) on delete cascade
 );
 
 create table restock (
@@ -31,5 +31,5 @@ create table restock (
  , company varchar(255) not null
  , encrypt_name varchar(255) not null
  , amount int not null
- , foreign key (item_id) references item(item_id)
+ , foreign key (item_id) references item(item_id) on delete cascade
 );

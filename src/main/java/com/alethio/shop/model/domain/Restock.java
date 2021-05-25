@@ -6,6 +6,7 @@ import lombok.Data;
 public class Restock {
 	private int restock_id;
 	private int item_id;
+	private String company;
 	private String encrypt_name;
 	private int amount;
 }

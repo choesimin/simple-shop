@@ -47,7 +47,7 @@ Initial Settings
 ---
 
 
-기능
+Functions
 ---
 - 가장 중요한 최소한의 기능으로 구성
 - Order
@@ -141,7 +141,7 @@ DataBase
 ---
 
 
-Domain
+Domains
 ---
 - Category
 - Item
@@ -152,6 +152,18 @@ Domain
 ---
 
 
+manage/category
+---
+- 최상위 부모가 되는 테이블과 관련된 category 기능 먼저 구현
+- category를 삭제할 때 GET방식을 사용하면 url을 입력하여 접근 가능하기 때문에 POST방식으로 category_id를 전송하여 처리
+	- ajax를 사용하지 않고 post 방식으로 전송하기 위해 form이 필요함
+	- category의 모든 항목에 form tag를 사용할 수 없으므로, form tag를 즉석으로 만들어 전송하는 함수(sendPost()) 구현 및 사용
+		- 참고 : http://blog.kgom.kr/47
+- Database와 Server와의 연결 방식 선정 및 설정, Thymeleaf 출력 방법 숙지 등으로 인해 시간이 꽤 걸림
+
+
+---
+
 
 
 
@@ -164,7 +176,7 @@ Domain
 ---
 
 
-Trouble Shooting
+Trouble Shootings
 ---
 - H2 Database Connect
 	- Error: Database "mem:testdb" not found, either pre-create it or allow remote database creation (not recommended in secure environments) [90149-200]
@@ -178,7 +190,7 @@ Trouble Shooting
 ---
 
 
-Note & Study
+References
 ---
 - MSA (MicroService Architecture)
 	- http://clipsoft.co.kr/wp/blog/%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98msa-%EA%B0%9C%EB%85%90/
@@ -187,6 +199,8 @@ Note & Study
 - 내부 DB
 	- https://ko.wikipedia.org/wiki/%EC%9D%B8%EB%A9%94%EB%AA%A8%EB%A6%AC_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4
 - H2
+	- Commands
+		- https://www.h2database.com/html/commands.html
 	- Wiki
 		- https://ko.wikipedia.org/wiki/H2_(DBMS)
 	- Video
@@ -198,7 +212,12 @@ Note & Study
 		- https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/htmlsingle/#howto-initialize-a-database-using-spring-jdbc
 	- Spring Boot + Mybatis + H2
 		- https://atoz-develop.tistory.com/entry/Spring-Boot-MyBatis-%EC%84%A4%EC%A0%95-%EB%B0%A9%EB%B2%95	
-
+- JdbcTemplate
+	- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
+	- How to
+		- https://velog.io/@lacomaco/Spring-Jdbc-Template-%EC%8B%A4%EC%8A%B5-%EC%A0%95%EB%A6%AC
+	- BeanPropertyRowMapper
+		- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/BeanPropertyRowMapper.html
 - Thymeleaf
 	- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html		
 - 교차 출처 리소스 공유 (CORS) 설정
