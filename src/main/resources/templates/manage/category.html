@@ -2,13 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<th:block th:replace="fragments/header"></th:block>
+	<script type="text/javascript" src="/js/manage/category.js"></script>
 </head>
 <body>
 	<th:block th:replace="fragments/nav"></th:block>
 	<main>
 		<h3>Add Category</h3>
-		<input type="text" placeholder="name" />
-		<button>Add</button>
+		<form>
+			<input type="text" name="name" placeholder="name" />
+			<button onclick="registCategory()">Add</button>
+		</form>
 		
 		<br/>
 		<br/>
@@ -20,7 +23,7 @@
 			<tr th:each="num : ${#numbers.sequence(1, 5)}">
 				<td>Food</td>
 				<td>
-					<button>Delete</button>
+					<button onclick="deleteCategory()">Delete</button>
 				</td>
 			</tr>
 		</table>

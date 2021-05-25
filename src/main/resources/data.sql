@@ -1,4 +1,5 @@
-INSERT INTO Products (prod_name, prod_price) values ('베베숲 물티슈', 2700);
-INSERT INTO Products (prod_name, prod_price) values ('여름 토퍼', 35180);
-INSERT INTO Products (prod_name, prod_price) values ('페이크 삭스', 860);
-INSERT INTO Products (prod_name, prod_price) values ('우산', 2900);
+insert into category(name) values('Food');
+insert into category(name) values('Clothes');
+
+insert into item(category_id, name, stock) values(1, '떡볶이', 100);
+insert into item(category_id, name, stock) values(2, 'A청바지', 100);

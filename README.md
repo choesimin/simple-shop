@@ -1,21 +1,31 @@
 Environment
 ---
 - Ubuntu 20.04 LTS
-- Eclipse 4.19.0 + STS 4.10.0.RELEASE
-- Spring Boot + Maven
-- H2 Database
+- Java 1.8
+- Spring Boot 2.5.0 + Maven
+- H2 Database 1.4.200
+- Eclipse 4.19.0
 
 
 ---
 
 
-7 Days
+7days Plan
 ---
-- 23 ~ 24 : 개발환경 설정, 뷰/서버/DB 설계, 뷰 완성, 모르는 것들 공부
-- 25 ~ 26 : back-end 구축
-- 27 : test
-- 28 ~ 29 : 보수 및 test
-- 30 : 최종 점검 및 제출
+- 23 ~ 24
+	- 개발환경 구축
+	- 기능 / View / Server / DB 설계
+	- View 완성
+	- 모르는 영역 공부
+- 25 ~ 26
+	- back-end 전반
+- 27 ~ 29
+	- test 및 보수
+- 30
+	- 최종 test 및 제출 (13:00 전에)
+
+
+---
 
 
 Initial Settings
@@ -24,17 +34,27 @@ Initial Settings
 	- spring initializr 사용
 	- Dependencies
 		- Spring Web
+		- Spring JDBC
 		- H2 Database
 		- Thymeleaf
 		- Lombok
+		- MyBatis Framework (X)
+			- Spring Boot에는 JPA를 많이 사용하며, Mybatis 설정 시, 불안해질 수 있음
+			- 만들고 시간이 남으면 보수
+			- Mapping을 따로 하지 않고, Spring JDBC만 이용하여 진행
 	
 	
 ---
 
 
-기능 설계
+기능
 ---
-- Admin
+- 가장 중요한 최소한의 기능으로 구성
+- Order
+	- Item List
+	- Ordering
+		- Input User info
+- Manage
 	- Category
 		- List
 		- Regist
@@ -47,33 +67,75 @@ Initial Settings
 			- Name
 			- Stock
 		- Delete
-- Order
-	- Item List
-	- Ordering
-		- Input user info
+	- Order
+		- List
+		- Delete
+	- Restock
+		- List
+		- Request
 
 
-DataBase 설계
 ---
-- category
-	- category_id : pk
-	- name
-- item
-	- item_id : pk
-	- category_id : fk
-	- name
-	- stock
-- orders
-	- order_id : pk
-	- item_id : fk
-	- email
-	- name
-	- mobile
-- restock
-	- restock_id : pk
-	- item_id : fk
-	- encrypt_name
-	- amount
+
+
+View
+---
+- 핵심 기능 접근이 쉽게
+	- MVP이기 때문
+- 만들기 편하게
+	- 중요한 건 back-end
+
+
+---
+
+
+Server
+---
+- MVP 기능
+	- 고객은 음식 혹은 옷을 주문할 수 있다
+- MVP
+	- 최소 기능 제품 (Minimum Viable Product)
+	- 핵심 기능을 간결하고 완성도 있게 구현
+- MSA
+	- 의존성을 최대한 낮추어서 개발
+	- Model2 방식 사용하여 의존성 Down
+	- Java 코드로만 이루어진 Service와 DAO는 재사용 가능하게 만들기
+		- Service 객체를 interface로 만들어, ServiceImpl Class가 상속 받도록 함
+			- 다형성을 통해 개발 코드를 수정하지 않고 사용하는 객체를 변경할 수 있음
+			- 기존 구현 객체(ServiceImpl1)와 비스니스 로직이 다른 기능을 추가해야할 경우, 다른 구현 객체(ServiceImpl2)를 만들어 사용할 수 있음
+		- DAO를 interface로 만들어 하위 Class에 상속
+			- 추후 Mybatis 등의 Mapper로 개발할 때, 사용 중인 Class를 고쳐쓰지 않고, 따로 Mybatis~~DAO.class를 따로 만들어 사용
+
+
+---
+
+
+DataBase
+---
+- item이 추가될 수 있어야 함
+- Table 간에 부모 자식 관계를 위한 foreign key를 제외하고 어떤 column도 넣지 않음
+	- 의존성을 낮추고 응집도를 높이기 위해, 성능에 대한 손해를 감안하고서 Join문 활용
+- Tables
+	- category
+		- category_id : pk
+		- name
+	- item
+		- item_id : pk
+		- category_id : fk
+		- name
+		- stock
+	- orders (order은 예약어)
+		- order_id : pk
+		- item_id : fk
+		- email
+		- name
+		- mobile
+	- restock
+		- restock_id : pk
+		- item_id : fk
+		- company
+		- encrypt_name
+		- amount
 
 
 ---
@@ -109,8 +171,8 @@ Trouble Shooting
 	- 원인 : 최근 버전의 경우, 보안상의 이유로 Web Console에서 새 database를 작성할 수 없음
 	- 해결
 		- 별도의 H2 프로그램 설치 및 접속 
-		- Spring Boot의 Server 실행 시 H2 Embedded로 접속할 수 있는 주소 받음 
-		- H2 Embedded에 주소 입력 후 접속
+		- Spring Boot의 Server 실행 시 H2 Embedded로 접속할 수 있는 주소 할당됨 (console에 나옴)
+		- H2 Embedded에 할당된 주소 입력 후 접속
 
 
 ---
