@@ -122,17 +122,22 @@ DataBase
 	- item
 		- item_id : pk
 		- category_id : fk
+			- item에서 category의 정보가 필요하면 join하여 사용할 예정
 		- name
 		- stock
 	- orders (order은 예약어)
 		- order_id : pk
-		- item_id : fk
+		- item_name
+			- 주문 내역은 지워지거나 변경되어서는 안 됨
+			- 따라서 item table의 자식이 아닌 독립된 table로 만들고 item_name column을 만듬
 		- email
 		- name
 		- mobile
 	- restock
 		- restock_id : pk
-		- item_id : fk
+		- item_name
+			- 재입고 내역은 지워지거나 변경되어서는 안 됨
+			- 따라서 item table의 자식이 아닌 독립된 table로 만들고 item_name column을 만듬
 		- company
 		- encrypt_name
 		- amount
@@ -152,9 +157,10 @@ Domains
 ---
 
 
-manage/category
+/manage/category
 ---
 - 최상위 부모가 되는 테이블과 관련된 category 기능 먼저 구현
+- category가 최상위 부모이므로, category를 삭제하면 자식 관계인 item이 모두 지워짐
 - category를 삭제할 때 GET방식을 사용하면 url을 입력하여 접근 가능하기 때문에 POST방식으로 category_id를 전송하여 처리
 	- ajax를 사용하지 않고 post 방식으로 전송하기 위해 form이 필요함
 	- category의 모든 항목에 form tag를 사용할 수 없으므로, form tag를 즉석으로 만들어 전송하는 함수(sendPost()) 구현 및 사용
@@ -165,8 +171,10 @@ manage/category
 ---
 
 
-
-
+/order
+---
+- 주문 기록은 item이나 category를 삭제하거나 변경해도 유지되어야 함
+	- 독립된 table에 정보 저장 == 다른 table의 정보가 변경되어도 그대로 유지 가능
 
 
 

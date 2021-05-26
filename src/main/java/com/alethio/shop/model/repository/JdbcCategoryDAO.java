@@ -2,8 +2,6 @@ package com.alethio.shop.model.repository;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,15 +11,13 @@ import com.alethio.shop.model.domain.Category;
 
 @Repository
 public class JdbcCategoryDAO implements CategoryDAO {
-	@Autowired
-    DataSource dataSource;
 	
 	@Autowired
-    JdbcTemplate jdbcTemplate;	
+    private JdbcTemplate jdbcTemplate;	
 
 	@Override
 	public List<Category> selectAll() {
-		String sql = "select * from category order by category_id";
+		String sql = "select * from category order by id";
 		List<Category> category_list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Category>(Category.class));
 
 		return category_list;
@@ -34,9 +30,9 @@ public class JdbcCategoryDAO implements CategoryDAO {
 	}
 	
 	@Override
-	public void delete(int category_id) {
-		String sql = "delete from category where category_id = ?";
-		jdbcTemplate.update(sql, category_id);
+	public void delete(int id) {
+		String sql = "delete from category where id = ?";
+		jdbcTemplate.update(sql, id);
 	}
 
 }

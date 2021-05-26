@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class Restock {
-	private int restock_id;
-	private int item_id;
+	private int id;
 	private String company;
-	private String encrypt_name;
+	private String item_name;
+	private String encrypt_item_name;
 	private int amount;
 }

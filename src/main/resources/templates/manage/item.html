@@ -2,16 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<th:block th:replace="fragments/header"></th:block>
+	<script type="text/javascript" src="/js/manage/item.js"></script>
 </head>
 <body>
 	<th:block th:replace="fragments/nav"></th:block>
 	<main>
 		<h3>Add Item</h3>
-		<select>
-			<option th:each="num : ${#numbers.sequence(1, 5)}">Food</option>
-		</select>
-		<input type="text" placeholder="name" />
-		<button>Add</button>
+		<form id="item_form">
+			<select name="category_id">
+				<option th:each="category : ${category_list}" th:text="${category.name}" th:value="${category.id}">Category Name</option>
+			</select>
+			<input type="text" placeholder="name" name="name" />
+			<input type="number" value="0" min="0" name="stock" />
+			<button onclick="registItem()">Add</button>
+		</form>
 		
 		<br/>
 		<br/>
@@ -20,14 +24,20 @@
 		
 		<h3>Item List</h3>
 		<table>
-			<tr th:each="num : ${#numbers.sequence(1, 5)}">
-				<td>Food</td>
-				<td>떡볶이</td>
+			<tr th:each="item : ${item_list}">
+				<td th:text="${item.category_id}">Category Name</td>
+				<td th:text="${item.name}">Item Name</td>
 				<td>
-					<button>Delete</button>
+					<input type="number" th:value="${item.stock}" name="stock" id="stock" />
+				</td>
+				<td>
+					<button th:onclick="'updateItem(' + ${item.id} + ', this.parentNode.previousSibling.previousSibling.childNodes[1].value)'">Update</button>
+				</td>
+				<td>
+					<button th:onclick="'deleteItem(' + ${item.id} + ')'">Delete</button>
 				</td>
 			</tr>
 		</table>
-	</main>>
+	</main>
 </body>
 </html>

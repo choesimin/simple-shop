@@ -8,6 +8,6 @@ public interface CategoryDAO {
 	
 	public List<Category> selectAll();
 	public void insert(Category category);
-	public void delete(int category_id);
+	public void delete(int id);
 	
 }

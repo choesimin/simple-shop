@@ -8,6 +8,6 @@ public interface CategoryService {
 
 	public List<Category> getList();
 	public void regist(Category category);
-	public void delete(int Category_id);
+	public void delete(int id);
 
 }

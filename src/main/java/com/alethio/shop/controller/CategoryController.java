@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alethio.shop.model.domain.Category;
 import com.alethio.shop.model.service.CategoryService;
@@ -34,8 +33,8 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/manage/category/delete")
-	public String deleteCategory(int category_id) {
-		categoryService.delete(category_id);
+	public String deleteCategory(int id) {
+		categoryService.delete(id);
 		
 		return "redirect:/manage/category";
 	}
