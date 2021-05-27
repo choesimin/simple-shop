@@ -2,26 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<th:block th:replace="fragments/header"></th:block>
+	<script type="text/javascript" src="/js/manage/order.js"></script>
 </head>
 <body>
 	<th:block th:replace="fragments/nav"></th:block>
 	<main>
 		<h3>Orders</h3>
 		<table>
-			<tr>
-				<td>Item</td>
-				<td>Name</td>
-				<td>Email</td>
-				<td>Mobile</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>떡볶이</td>
-				<td>최시민</td>
-				<td>chltlals961009@gmail.com</td>
-				<td>010-3396-3093</td>
+			<tr th:each="order : ${order_list}">
+				<td th:text="${order.category_name}">Category Name</td>
+				<td th:text="${order.item_name}">Item Name</td>
+				<td th:text="${order.amount}">Amount</td>
+				<td th:text="${order.contact_email}">Contact Email</td>
+				<td th:text="${order.contact_name}">Contact Name</td>
+				<td th:text="${order.contact_mobile}">Contact Mobile</td>
 				<td>
-					<button>Delete</button>
+					<button th:onclick="'deleteOrder(' + ${order.id} + ')'">Delete</button>
 				</td>
 			</tr>
 		</table>

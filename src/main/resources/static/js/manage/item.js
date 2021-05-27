@@ -7,9 +7,6 @@ function registItem() {
 }
 
 function updateItem(id, stock) {
-	console.log(id);
-	console.log(stock);
-	
 	sendPost("/manage/item/update", {"id": id, "stock": stock});
 }
 

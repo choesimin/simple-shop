@@ -18,15 +18,20 @@ public class JdbcRestockDAO implements RestockDAO {
 	@Override
 	public List<Restock> selectAll() {
 		String sql = "select * from restock order by id";
-		List<Restock> restock_list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Restock>(Restock.class));
+		List<Restock> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Restock>(Restock.class));
 
-		return restock_list;
+		return list;
 	}
 	
 	@Override
 	public void insert(Restock restock) {
-		String sql = "insert into restock(company, item_name, encrypt_item_name, amount) values(?, ?, ?, ?)";
-		jdbcTemplate.update(sql, restock.getCompany(), restock.getItem_name(), restock.getEncrypt_item_name(), restock.getAmount());
+		String sql = "insert into restock(item_id, company_name, encrypt_item_name, amount) values(?, ?, ?, ?)";
+		jdbcTemplate.update(sql
+			, restock.getItem_id()
+			, restock.getCompany_name()
+			, restock.getEncrypt_item_name()
+			, restock.getAmount()
+		);
 	}
 	
 	@Override

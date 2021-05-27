@@ -21,10 +21,12 @@ public class RestockServiceImpl implements RestockService {
 
 	@Override
 	public void regist(Restock restock) {
-		if (restock.getCompany().equals("amadon")) {
+		if (restock.getCompany_name().equals("Amadon")) {
 			restock.setEncrypt_item_name(restock.getItem_name() + 123);
-		} else if (restock.getCompany().equals("coumang")) {
+		} else if (restock.getCompany_name().equals("Coumang")) {
 			restock.setEncrypt_item_name(123 + restock.getItem_name());
+		} else {
+			restock.setEncrypt_item_name(".");
 		}
 
 		restockDAO.insert(restock);

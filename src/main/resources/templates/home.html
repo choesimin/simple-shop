@@ -2,39 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<th:block th:replace="fragments/header"></th:block>
+	<script type="text/javascript" src="/js/home.js"></script>
 </head>
 <body>
 	<th:block th:replace="fragments/nav"></th:block>
 	<main>
-		<form>
-			<h3>contactInfo</h3>
-			<input type="text" placeholder="contactEmail"/>
-			<input type="text" placeholder="contactName"/>
-			<input type="text" placeholder="mobile"/>
-			
-			<br/>
-			<br/>
-			<br/>
-			
-			<h3>Items</h3>
-			<table>
-				<tr th:each="num : ${#numbers.sequence(1, 5)}">
-					<td>
-						<input type="checkbox" />
-					</td>
-					<td>Food</td>
-					<td>Rice</td>
-					<td>
-						<input type="number" value="0" min="0"/>
-					</td>
-				</tr>
-			</table>
-		</form>
+		<h3>contactInfo</h3>
+		<input type="text" placeholder="contactEmail" id="contact_email" />
+		<input type="text" placeholder="contactName" id="contact_name" />
+		<input type="text" placeholder="mobile" id="contact_mobile" />
+		
+		<br/>
+		<br/>
+		<br/>
+		
+		<h3>Items</h3>
+		<table>
+			<tr th:each="item : ${item_list}">
+				<td th:text="${item.category_name}">Category Name</td>
+				<td th:text="${item.name}">Item Name</td>
+				<td>
+					<input type="number" value="1" min="1" />
+				</td>
+				<td>
+					<button th:item_id="${item.id}" th:onclick="order(this.getAttribute('item_id'), this.parentNode.previousSibling.previousSibling.childNodes[1].value)">Order</button>
+				</td>
+			</tr>
+		</table>
 		
 		<br/>
 		<br/>
 		
-		<button>Order</button>
 	</main>
 </body>
 </html>

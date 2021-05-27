@@ -9,5 +9,6 @@ public class Item {
 	private String name;
 	private int stock;
 
+	/* Join Elements */
 	private String category_name;
 }

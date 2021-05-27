@@ -16,17 +16,26 @@ public class JdbcItemDAO implements ItemDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
+	public Item select(int id) {
+		return null;
+	}
+
+	@Override
 	public List<Item> selectAll() {
 		String sql = "select item.id as id, item.category_id as category_id, item.name as name, item.stock as stock, category.name as category_name from item join category where category.id = item.category_id order by id";
-		List<Item> item_list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Item>(Item.class));
+		List<Item> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Item>(Item.class));
 
-		return item_list;
+		return list;
 	}
 
 	@Override
 	public void insert(Item item) {
 		String sql = "insert into item(category_id, name, stock) values(?, ?, ?)";
-		jdbcTemplate.update(sql, item.getCategory_id(), item.getName(), item.getStock());
+		jdbcTemplate.update(sql
+			, item.getCategory_id()
+			, item.getName()
+			, item.getStock()
+		);
 	}
 
 	@Override

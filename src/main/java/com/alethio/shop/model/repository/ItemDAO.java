@@ -6,6 +6,7 @@ import com.alethio.shop.model.domain.Item;
 
 public interface ItemDAO {
 
+	public Item select(int id);
 	public List<Item> selectAll();
 	public void insert(Item item);
 	public void update(Item item);
