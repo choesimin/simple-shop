@@ -25,10 +25,10 @@
 		<h3>Item List</h3>
 		<table>
 			<tr th:each="item : ${item_list}">
-				<td th:text="${item.category_id}">Category Name</td>
+				<td th:text="${item.category_name}">Category Name</td>
 				<td th:text="${item.name}">Item Name</td>
 				<td>
-					<input type="number" th:value="${item.stock}" name="stock" id="stock" />
+					<input type="number" th:value="${item.stock}" name="stock" min="0" />
 				</td>
 				<td>
 					<button th:onclick="'updateItem(' + ${item.id} + ', this.parentNode.previousSibling.previousSibling.childNodes[1].value)'">Update</button>

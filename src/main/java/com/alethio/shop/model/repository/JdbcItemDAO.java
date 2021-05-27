@@ -1,6 +1,5 @@
 package com.alethio.shop.model.repository;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class JdbcItemDAO implements ItemDAO {
 
 	@Override
 	public List<Item> selectAll() {
-		String sql = "select item.id as id, item.category_id as category_id, item.name as name, item.stock as stork, category.name as category_name from item join category where category.category_id = item.category_id order by id";
+		String sql = "select item.id as id, item.category_id as category_id, item.name as name, item.stock as stock, category.name as category_name from item join category where category.id = item.category_id order by id";
 		List<Item> item_list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Item>(Item.class));
 
 		return item_list;

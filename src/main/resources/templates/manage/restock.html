@@ -2,46 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<th:block th:replace="fragments/header"></th:block>
+	<script type="text/javascript" src="/js/manage/restock.js"></script>
 </head>
 <body>
 	<th:block th:replace="fragments/nav"></th:block>
 	<main>
 		<h3>Request Restock</h3>
-		<select>
-			<option>Amadon</option>
-			<option>Coumang</option>
-		</select>
-		<select>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-		</select>
-		<select>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-			<option>Food</option>
-		</select>
-		<input type="number" value="0" min="0" />
+		<form id="restock_form">
+			<select name="company">
+				<option value="amadon">Amadon</option>
+				<option value="coumang">Coumang</option>
+			</select>
+			<select name="item_name">
+				<option th:each="item : ${item_list}" th:text="${item.name}" th:value="${item.name}">Item Name</option>
+			</select>
+			<input type="number" value="1" min="1" name="amount" />
+			<button onclick="registRestock()">Add</button>
+		</form>
 		
 		<br/>
 		<br/>
 		<br/>
 		<br/>
 		
-		<h3>Restocks</h3>
+		<h3>Restock List</h3>
 		<table>
-			<tr>
-				<td>Amadon</td>
-				<td>encrypt name</td>
-				<td>amount</td>
+			<tr th:each="restock : ${restock_list}">
+				<td th:text="${restock.company}">Company</td>
+				<td th:text="${restock.encrypt_item_name}">Encrypt Item Name</td>
+				<td th:text="${restock.amount}">Amount</td>
 				<td>
-					<button>Delete</button>
+					<button th:onclick="'deleteRestock(' + ${restock.id} + ')'">Delete</button>
 				</td>
 			</tr>
 		</table>

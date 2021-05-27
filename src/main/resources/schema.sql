@@ -10,9 +10,9 @@ create table category (
 
 create table item (
  id identity primary key
- , category_id int
+ , category_id int not null
  , name varchar(255) not null
- , stock int default 0
+ , stock int default 0 not null
  , foreign key (category_id) references category(id) on delete cascade
 );
 

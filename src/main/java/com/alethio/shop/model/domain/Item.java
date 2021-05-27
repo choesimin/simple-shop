@@ -9,5 +9,5 @@ public class Item {
 	private String name;
 	private int stock;
 
-	private int category_name;
+	private String category_name;
 }
