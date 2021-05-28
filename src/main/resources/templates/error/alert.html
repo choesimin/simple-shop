@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<script th:inline="javascript">
+	var message = [[${message}]];
+
+	alert(message);
+
+	history.back();
+</script>
+</html>

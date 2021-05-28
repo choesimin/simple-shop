@@ -224,6 +224,7 @@ References
 	- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
 	- How to
 		- https://velog.io/@lacomaco/Spring-Jdbc-Template-%EC%8B%A4%EC%8A%B5-%EC%A0%95%EB%A6%AC
+		- http://wonwoo.ml/index.php/post/1960
 	- BeanPropertyRowMapper
 		- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/BeanPropertyRowMapper.html
 - Thymeleaf

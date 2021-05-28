@@ -136,7 +136,7 @@ public class ManageController {
 	}
 	
 	@PostMapping("/manage/order/add")
-	public String addOrder(Order order) {
+	public String addOrder(Order order) throws Throwable {
 		orderService.regist(order);
 		
 		return "redirect:/manage/order";

@@ -17,7 +17,10 @@ public class JdbcOrderDAO implements OrderDAO {
 
 	@Override
 	public List<Order> selectAll() {
-		String sql = "select * from orders order by id desc";
+		String sql = "select orders.id as id, orders.item_id as item_id, orders.amount as amount";
+		sql += ", orders.contact_email as contact_email, orders.contact_name as contact_name, orders.contact_mobile as contact_mobile";
+		sql += ", item.name as item_name from orders join item";
+		sql += " where orders.item_id = item.id order by id desc";
 		List<Order> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Order>(Order.class));
 
 		return list;

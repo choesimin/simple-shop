@@ -38,10 +38,11 @@ public class HomeController {
 	/* Order */
 	
 	@PostMapping("/order")
-	public String order(Order order) {
+	public String order(Order order) throws Throwable {
 		orderService.regist(order);
 		
 		return "redirect:/";
-	}	
+	}
+	
 
 }

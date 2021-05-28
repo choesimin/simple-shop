@@ -17,7 +17,18 @@ public class JdbcItemDAO implements ItemDAO {
 
 	@Override
 	public Item select(int id) {
-		return null;
+		String sql = "select item.id as id, item.category_id as category_id, item.name as name, item.stock as stock, category.name as category_name from item join category where category.id = item.category_id and item.id = ? order by id desc";
+		
+		Item item = jdbcTemplate.queryForObject(sql
+			, (resultSet, rowNum) -> new Item(
+				resultSet.getInt("id")
+				, resultSet.getInt("category_id")
+				, resultSet.getString("name")
+				, resultSet.getInt("stock")
+				, resultSet.getString("category_name")
+			)
+		, id);
+		return item;
 	}
 
 	@Override

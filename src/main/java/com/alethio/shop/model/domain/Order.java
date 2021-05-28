@@ -12,6 +12,6 @@ public class Order {
 	private String contact_mobile;
 
 	/* Join Elements */
-	private int item_name;
-	private int category_name;
+	private String item_name;
+	private String category_name;
 }

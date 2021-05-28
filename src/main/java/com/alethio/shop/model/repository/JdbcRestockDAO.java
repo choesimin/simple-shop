@@ -17,7 +17,7 @@ public class JdbcRestockDAO implements RestockDAO {
 
 	@Override
 	public List<Restock> selectAll() {
-		String sql = "select * from restock order by id";
+		String sql = "select id, item_id, company_name, encrypt_item_name, amount from restock order by id desc";
 		List<Restock> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Restock>(Restock.class));
 
 		return list;
