@@ -49,7 +49,7 @@ Initial Settings
 
 Functions
 ---
-- 가장 중요한 최소한의 기능으로 구성
+- 중요한 기능을 최소한으로 구성
 - Order
 	- Item List
 	- Ordering
@@ -232,9 +232,9 @@ References
 - 교차 출처 리소스 공유 (CORS) 설정
 - CI / CD
 	- https://www.redhat.com/ko/topics/devops/what-is-ci-cd
-- PostMan Test Tool
-- Single Object를 얻기 위한 방법
-	- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/dao/support/DataAccessUtils.html#method.summary
+- PostMan
+	- install
+		- https://linuxize.com/post/how-to-install-postman-on-ubuntu-20-04/
 
 
 
