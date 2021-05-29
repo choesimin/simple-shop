@@ -229,7 +229,7 @@ Domains
 	- category_name (join)
 
 
-/manage/category
+Functions of Category
 ---
 - 최상위 부모가 되는 테이블과 관련된 category 기능 먼저 구현
 - category가 최상위 부모이므로, category를 삭제하면 자식 관계인 item이 모두 지워짐
@@ -240,20 +240,27 @@ Domains
 	- 다른 기능에도 해당 함수(sendPost()) 사용
 
 
-/manage/item
+Functions of Item
 ---
 - order와 restock의 부모가 되는 item에 관련된 기능 구현
 - 재고 수정 기능
 - list를 불러올 때, category_id로 join하여 category_name을 가져옴
 
 
-/manage/order & /order & /manage/restock
+Functions of Order & Restock
 ---
 - item의 자식 table에 관련된 기능
 - category_name 가져오기
 	- list에 category_name을 출력
 	- 자신의 table에 있는 item_id로 item table을 join하여 category_id를 가져옴
 	- 가져온 category_id로 category table에 join하여 category_name을 가져옴
+
+
+Test
+---
+- PostMan을 사용하여 각 요청에 대한 API의 반환값 검사
+- item_id가 table에 없는 경우, alert 창으로 경고
+- 현재 가지고 있는 item 수량을 넘어서서 주문한 경우, alert 창으로 경고
 
 
 Improvements
