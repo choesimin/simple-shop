@@ -2,21 +2,13 @@ How To Test
 ===
 
 
----
-
-
 Run
 ---
-
 - src/main/java/com/alethio/shop/ShopApplication.java
-
-
----
 
 
 Setting H2 Database
 ---
-
 1. H2 프로그램 설치 및 접속
 	- Web Console로 접속하기 전에 H2로 database를 만들어놓아야 함
 
@@ -27,14 +19,10 @@ Setting H2 Database
 		- 내장 Server 가동 시, console창의 o.s.b.a.h2.H2ConsoleAutoConfiguration 항목의 주소(jdbc:h2:mem:~~~~) 입력
 	- User Name (사용자명) : sa
 	- Password (비밀번호) : (공백)
-	
-
----
 
 
 Using PostMan
 ---
-
 - POST localhost:8080/order
 
 - Normal
@@ -74,12 +62,8 @@ Using PostMan
 </pre>
 
 
----
-
-
 Test Code
 ---
-
 - src/test/java/com/alethio/shop의 각 package에 기능별로 Test Code 작성
 - 각 Test 파일 실행
 
@@ -93,12 +77,8 @@ Making History
 ===
 
 
----
-
-
 Environment
 ---
-
 - Java 1.8
 - Spring Boot 2.5.0 + Maven
 - H2 Database 1.4.200
@@ -106,21 +86,15 @@ Environment
 - Eclipse 4.19.0
 
 
----
-
-
 7days Plan
 ---
-
 - 23 ~ 24
 	- 개발환경 구축
 	- 기능 / View / Server / DB 설계
 	- View 완성
 	- 모르는 영역 공부
-
 - 25 ~ 27
 	- back-end
-
 - 28 ~ 29
 	- test
 	- 보수
@@ -128,12 +102,8 @@ Environment
 	- 최종 완성 & 제줄
 
 
----
-
-
 Initial Settings
 ---
-
 - Spring Boot Project 생성
 	- spring initializr 사용
 	- Dependencies
@@ -142,19 +112,14 @@ Initial Settings
 		- H2 Database
 		- Thymeleaf
 		- Lombok
-	
-	
----
 
 
 Functions
 ---
-
 - 중요한 기능을 최소한으로 구성
 - Order
 	- item list
 	- ordering
-
 - Manage
 	- category
 		- regist
@@ -174,32 +139,21 @@ Functions
 		- delete
 
 
----
-
-
 View
 ---
-
 - 핵심 기능 접근이 쉽게
 	- MVP의 특징 살리기 위해
-
 - 만들기 편하게
 	- 중요한 건 back-end
 
 
----
-
-
 Server
 ---
-
 - MVP 기능
 	- 고객은 음식 혹은 옷을 주문할 수 있다
-
 - MVP
 	- 최소 기능 제품 (Minimum Viable Product)
 	- 핵심 기능을 간결하고 완성도 있게 구현
-
 - MSA
 	- 의존성을 최대한 낮추어서 개발
 	- Model2 방식 사용하여 의존성 Down
@@ -211,19 +165,13 @@ Server
 			- 추후 Mybatis 등의 Mapper로 개발할 때, 사용 중인 Class를 고쳐쓰지 않고, 따로 Mybatis~~DAO.class를 따로 만들어 사용
 
 
----
-
-
 DataBase
 ---
-
 - 필수) item이 추가될 수 있어야 함
 - 추가) category가 추가될 수 있어야 함
-
 - table 간에 부모 자식 관계를 위한 foreign key를 제외하고서 다른 table의 column을 넣지 않음
 	- 의존성을 낮추고 응집도를 높이기 위해 정규화에 집중
 	- 성능을 위한 반정규화는 고려하지 않음
-
 - Tables
 	- category
 		- id : pk
@@ -248,14 +196,9 @@ DataBase
 		- amount
 
 
----
-
-
 Domains
 ---
-
 - 값을 저장하기 위한 변수명은 각 table의 column명과 동일하나 join문을 이용하기 위한 변수들이 추가됨
-
 - Category
 	- id
 	- name
@@ -286,12 +229,8 @@ Domains
 	- category_name (join)
 
 
----
-
-
 /manage/category
 ---
-
 - 최상위 부모가 되는 테이블과 관련된 category 기능 먼저 구현
 - category가 최상위 부모이므로, category를 삭제하면 자식 관계인 item이 모두 지워짐
 - category를 삭제할 때 GET방식을 사용하면 url을 입력하여 접근 가능하기 때문에 POST방식으로 category_id를 전송하여 처리
@@ -301,22 +240,15 @@ Domains
 	- 다른 기능에도 해당 함수(sendPost()) 사용
 
 
----
-
 /manage/item
 ---
-
 - order와 restock의 부모가 되는 item에 관련된 기능 구현
 - 재고 수정 기능
 - list를 불러올 때, category_id로 join하여 category_name을 가져옴
 
 
----
-
-
 /manage/order & /order & /manage/restock
 ---
-
 - item의 자식 table에 관련된 기능
 - category_name 가져오기
 	- list에 category_name을 출력
@@ -324,21 +256,14 @@ Domains
 	- 가져온 category_id로 category table에 join하여 category_name을 가져옴
 
 
----
-
-
 Improvements
 ---
-
 - 주문 기록은 item이나 category를 변경해도 유지되어야 함
 	- foreign key constraint의 조정 고려
 
 - Test Code의 test들이 단조로움
 	- case들의 다양성 부족
 	- 방법과 적용에 대한 공부 필요
-
-
----
 
 
 Trouble Shootings
@@ -354,12 +279,8 @@ Trouble Shootings
 		- H2 Embedded에 할당된 주소 입력 후 접속
 
 
----
-
-
 References
 ---
-
 - MSA (MicroService Architecture)
 	- http://clipsoft.co.kr/wp/blog/%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98msa-%EA%B0%9C%EB%85%90/
 - MVP : 최소 기능 제품
