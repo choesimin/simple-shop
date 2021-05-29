@@ -10,5 +10,6 @@ public interface ItemService {
 	public void regist(Item item);
 	public void update(Item item);
 	public void delete(int id);
+	public int countById(int id);
 
 }

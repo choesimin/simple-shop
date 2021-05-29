@@ -11,5 +11,6 @@ public interface ItemDAO {
 	public void insert(Item item);
 	public void update(Item item);
 	public void delete(int id);
+	public int countById(int id);
 
 }

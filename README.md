@@ -1,3 +1,48 @@
+How To Test
+===
+Run
+---
+- src/main/java/com/alethio/shop/ShopApplication.java
+
+Setting H2 Database
+---
+1. H2 프로그램 설치 및 접속
+	- Web Console로 접속하기 전에 H2로 database를 만들어놓아야 함
+2. Application 실행 후, Web Console 접속 (localhost:8080/h2-console)
+	- Saved Settings (저장한 설정) : H2 Embedded
+	- Driver Class (드라이버 클래스) : org.h2.Driver
+	- JDBC URL
+		- 내장 Server 가동 시, console창의 o.s.b.a.h2.H2ConsoleAutoConfiguration 항목의 주소(jdbc:h2:mem:~~~~) 입력
+	- User Name (사용자명) : sa
+	- Password (비밀번호) : (공백)
+	
+
+---
+
+
+Using PostMan
+---
+- localhost:8080/order POST
+	- Normal
+		- {item_id : 1, amount: 10, contact_email: "test01@test.com    ", contact_name: "김철수", contact_mobile: "    01012345678  "}
+	- Error : Item Not Enough (수량 부족)
+		- {item_id : 1, amount: 1000, contact_email: "test01@test.com    ", contact_name: "김철수", contact_mobile: "    01012345678  "}
+	- Error : Item Not Found (존재하지 않는 물품)
+		- {item_id : 100, amount: 10, contact_email: "test01@test.com    ", contact_name: "김철수", contact_mobile: "    01012345678  "}
+
+
+Test Code
+---
+- src/test/java/com/alethio/shop의 각 package에 기능 별로 Test Code 작성
+- 각 파일 실행
+
+
+---
+
+
+Making History
+===
+
 Environment
 ---
 - Ubuntu 20.04 LTS
@@ -17,12 +62,14 @@ Environment
 	- 기능 / View / Server / DB 설계
 	- View 완성
 	- 모르는 영역 공부
-- 25 ~ 26
+- 25 ~ 27
 	- back-end 전반
-- 27 ~ 29
-	- test 및 보수
+- 28 ~ 29
+	- 최종 test보수
+	- README.md 완성
+	- 최종 완성 & 제줄
 - 30
-	- 최종 test 및 제출 (13:00 전에)
+	- 제출 (13:00 전에)
 
 
 ---
@@ -38,10 +85,6 @@ Initial Settings
 		- H2 Database
 		- Thymeleaf
 		- Lombok
-		- MyBatis Framework (X)
-			- Spring Boot에는 JPA를 많이 사용하며, Mybatis 설정 시, 불안해질 수 있음
-			- 만들고 시간이 남으면 보수
-			- Mapping을 따로 하지 않고, Spring JDBC만 이용하여 진행
 	
 	
 ---
@@ -51,28 +94,25 @@ Functions
 ---
 - 중요한 기능을 최소한으로 구성
 - Order
-	- Item List
-	- Ordering
-		- Input User info
+	- item list
+	- ordering
 - Manage
-	- Category
-		- List
-		- Regist
-			- Name
-		- Delete
-	- Item
-		- List
-		- Regist
-			- Category Select
-			- Name
-			- Stock
-		- Delete
+	- category
+		- regist
+		- list
+		- delete
+	- item
+		- regist
+		- list
+		- update
+		- delete
 	- Order
-		- List
-		- Delete
+		- list
+		- delete
 	- Restock
-		- List
-		- Request
+		- regist
+		- list
+		- delete
 
 
 ---
@@ -81,7 +121,7 @@ Functions
 View
 ---
 - 핵심 기능 접근이 쉽게
-	- MVP이기 때문
+	- MVP의 특징 살리기 위해
 - 만들기 편하게
 	- 중요한 건 back-end
 
@@ -112,34 +152,32 @@ Server
 
 DataBase
 ---
-- item이 추가될 수 있어야 함
-- Table 간에 부모 자식 관계를 위한 foreign key를 제외하고 어떤 column도 넣지 않음
-	- 의존성을 낮추고 응집도를 높이기 위해, 성능에 대한 손해를 감안하고서 Join문 활용
+- 필수) item이 추가될 수 있어야 함
+- 추가) category가 추가될 수 있어야 함
+- table 간에 부모 자식 관계를 위한 foreign key를 제외하고서 다른 table의 column을 넣지 않음
+	- 의존성을 낮추고 응집도를 높이기 위해 정규화에 집중
+	- 성능을 위한 반정규화는 고려하지 않음
 - Tables
 	- category
-		- category_id : pk
+		- id : pk
 		- name
 	- item
-		- item_id : pk
+		- id : pk
 		- category_id : fk
-			- item에서 category의 정보가 필요하면 join하여 사용할 예정
 		- name
 		- stock
-	- orders (order은 예약어)
-		- order_id : pk
-		- item_name
-			- 주문 내역은 지워지거나 변경되어서는 안 됨
-			- 따라서 item table의 자식이 아닌 독립된 table로 만들고 item_name column을 만듬
-		- email
-		- name
-		- mobile
+	- orders
+		- id : pk
+		- item_id : fk
+		- amount
+		- contact_email
+		- contact_name
+		- contact_mobile
 	- restock
-		- restock_id : pk
-		- item_name
-			- 재입고 내역은 지워지거나 변경되어서는 안 됨
-			- 따라서 item table의 자식이 아닌 독립된 table로 만들고 item_name column을 만듬
-		- company
-		- encrypt_name
+		- id : pk
+		- item_id : fk
+		- company_name
+		- encrypt_item_name
 		- amount
 
 
@@ -148,10 +186,35 @@ DataBase
 
 Domains
 ---
+- 값을 저장하기 위한 변수명은 각 table의 column명과 동일하나 join문을 이용하기 위한 변수들이 추가됨
 - Category
+	- id
+	- name
 - Item
+	- id
+	- category_id
+	- name
+	- stock
+	- category_name (join)
 - Order
+	- id
+	- item_id
+	- amount
+	- contact_email
+	- contact_name
+	- contact_mobile
+	- item_name (join)
+	- category_name (join)
 - Restock
+	- id
+	- item_id
+	- company_name
+	- encrypt_item_name
+	- amount
+	- item_name (storing value)
+		- encrypt_item_name을 만들기 위해 view에서 값을 받아오는 역할
+		- db에 저장되는 값은 아님 (item_id가 있기 때문)
+	- category_name (join)
 
 
 ---
@@ -164,8 +227,23 @@ Domains
 - category를 삭제할 때 GET방식을 사용하면 url을 입력하여 접근 가능하기 때문에 POST방식으로 category_id를 전송하여 처리
 	- ajax를 사용하지 않고 post 방식으로 전송하기 위해 form이 필요함
 	- category의 모든 항목에 form tag를 사용할 수 없으므로, form tag를 즉석으로 만들어 전송하는 함수(sendPost()) 구현 및 사용
-		- 참고 : http://blog.kgom.kr/47
-- Database와 Server와의 연결 방식 선정 및 설정, Thymeleaf 출력 방법 숙지 등으로 인해 시간이 꽤 걸림
+		- cf) http://blog.kgom.kr/47
+
+
+---
+
+/manage/item
+---
+- order와 restock의 부모가 되는 item에 관련된 기능 구현
+- 
+
+
+---
+
+
+/manage/restock
+---
+-
 
 
 ---
@@ -173,8 +251,19 @@ Domains
 
 /order
 ---
-- 주문 기록은 item이나 category를 삭제하거나 변경해도 유지되어야 함
-	- 독립된 table에 정보 저장 == 다른 table의 정보가 변경되어도 그대로 유지 가능
+
+
+
+
+
+
+
+---
+
+
+개선할 점 & 아쉬운 점
+---
+- 주문 기록은 item이나 category를 변경해도 유지되어야 함
 
 
 

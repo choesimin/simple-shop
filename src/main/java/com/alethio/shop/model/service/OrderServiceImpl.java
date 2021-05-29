@@ -33,10 +33,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void regist(Order order) throws Throwable {
 		
-		Item item = itemDAO.select(order.getItem_id());
+		int item_check = itemDAO.countById(order.getItem_id());
 		int stock = 0;
 		
-		if (item != null) {
+		if (item_check > 0) {
+			Item item = itemDAO.select(order.getItem_id());
 				
 			/* Caluate item stock */
 			stock = item.getStock() - order.getAmount();

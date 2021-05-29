@@ -17,7 +17,7 @@ public class JdbcCategoryDAO implements CategoryDAO {
 
 	@Override
 	public List<Category> selectAll() {
-		String sql = "select * from category order by id desc";
+		String sql = "select * from category order by id";
 		List<Category> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Category>(Category.class));
 
 		return list;

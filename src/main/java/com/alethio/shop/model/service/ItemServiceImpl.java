@@ -33,6 +33,11 @@ public class ItemServiceImpl implements ItemService {
 	public void delete(int id) {
 		itemDAO.delete(id);
 	}
+
+	@Override
+	public int countById(int id) {
+		return itemDAO.countById(id);
+	}
 	
 
 

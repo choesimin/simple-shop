@@ -20,7 +20,7 @@ public class JdbcOrderDAO implements OrderDAO {
 		String sql = "select orders.id as id, orders.item_id as item_id, orders.amount as amount, orders.contact_email as contact_email";
 		sql += ", orders.contact_name as contact_name, orders.contact_mobile as contact_mobile, item.name as item_name, category.name as category_name";
 		sql += " from orders join item on orders.item_id = item.id";
-		sql += " join category on item.category_id = category.id order by id desc";
+		sql += " join category on item.category_id = category.id order by id";
 		List<Order> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Order>(Order.class));
 
 		return list;

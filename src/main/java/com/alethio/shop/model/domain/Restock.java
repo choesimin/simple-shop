@@ -12,5 +12,7 @@ public class Restock {
 
 	/* Join Elements */
 	private String category_name;
+	
+	/* Temporary Value Storing Elements */
 	private String item_name;
 }
