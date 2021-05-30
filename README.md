@@ -258,7 +258,7 @@ Functions of Order & Restock
 	- list에 category_name을 출력
 	- 자신의 table에 있는 item_id로 item table을 join하여 category_id를 가져옴
 	- 가져온 category_id로 category table에 join하여 category_name을 가져옴
-- 주문 시, 입력된 contactInfo에 대해 OrderService에서 trim()을 사용하여 공백 제거 처리
+- 주문 시, 입력된 contactInfo에 대해 OrderService에서 trim()을 사용하여 좌우 공백 제거 처리
 
 
 Test
@@ -266,7 +266,7 @@ Test
 - PostMan을 사용하여 각 요청에 대한 API의 반환값 검사
 	- item_id가 table에 없는 경우, alert 창으로 경고
 	- 현재 가지고 있는 item 수량을 넘어서서 주문한 경우, alert 창으로 경고
-- TestCode 작동
+- TestCode 작성 및 실행
 
 
 Improvements
@@ -353,7 +353,7 @@ References
 
 Thank You
 ---
-배움의 기회를 주심에 감사
+Spring Boot, H2, Thymeleaf, PostMan, Test Code 작성 등 새로 알게 되어 사용해본 것들이 많았다. 이들 모두 전에 사용하던 도구 또는 방법을 개선시킬 수 있는 것들이었고, 그 효율과 편리가 참 인상 깊다. 후에 적절한 선택을 하기 위한 선택지가 늘어나게 된 것이 기쁘고, 또한 과제로써 기회를 제공해준 Alethio에도 감사를 남긴다.
 
 
 
