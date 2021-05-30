@@ -118,8 +118,7 @@ Initial Settings
 
 Functions
 ---
-- 최소한 필요한 기능으로 구성
-
+- 최소한 필요한 기능으로 구성- - 
 - Order
 	- item list
 	- ordering
@@ -273,7 +272,6 @@ Improvements
 ---
 - 주문 기록은 item이나 category를 변경해도 유지되어야 함
 	- table의 column 또는 foreign key constraint의 조정 고려
-
 - Test Code
 	- test code가 단조로움
 		- case들의 다양성 부족
@@ -281,13 +279,11 @@ Improvements
 	- 다 만들고 test code를 작성함
 		- test code를 처음 작성해 사용법 미숙이 원인
 		- 개발하면서 작성하고 사용했다면 훨씬 편했을 것이라 생각
-	
 - 목적에 더 알맞은 framework 또는 architectural pattern에 대한 지식 필요
 	- Spring Framework와 MVC pattern은 구조적이고 유지보수성이 좋지만, 가볍게 만들어내기엔 과한 느낌
 	- 다른 framework와 architectural pattern들을 알고 있어야 상황에 맞게 공부하고 사용이 가능
 		- ex) Express - Node.js, MVVM or MVP 등
 	- 추가로 design pattern에 대한 지식 필요
-	
 - join한 값을 전달할 수 있는 다른 방법
 	- HashMap으로 join된 값을 가져올 수 있다고 들어 시도해보았으나 실패 -> domain에 변수 추가하여 사용함
 	- 방법론, Collection에 대한 공부 필요
