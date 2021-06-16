@@ -1,4 +1,4 @@
-package com.alethio.shop.item;
+package com.simin.shop.item;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

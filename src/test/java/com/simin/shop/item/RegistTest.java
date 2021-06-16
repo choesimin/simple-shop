@@ -1,4 +1,4 @@
-package com.alethio.shop.item;
+package com.simin.shop.item;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import com.simin.shop.model.domain.Item;
 import com.simin.shop.model.service.ItemService;
 
 @SpringBootTest
-public class UpdateTest {
+public class RegistTest {
 
 	@Autowired
 	private ItemService itemService;
@@ -17,10 +17,11 @@ public class UpdateTest {
 	void contextLoads() {
 		
 		Item item = new Item();
-		item.setId(1);
-		item.setStock(10000);
+		item.setCategory_id(1);
+		item.setName("순대");
+		item.setStock(1000);
 		
-		itemService.update(item);
+		itemService.regist(item);
 		
 		for (Item item_of_list : itemService.getList()) {
 			System.out.println("---");
