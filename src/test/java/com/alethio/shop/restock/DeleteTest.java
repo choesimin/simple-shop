@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.alethio.shop.model.domain.Restock;
-import com.alethio.shop.model.service.RestockService;
+import com.simin.shop.model.domain.Restock;
+import com.simin.shop.model.service.RestockService;
 
 @SpringBootTest
 public class DeleteTest {

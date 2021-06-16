@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.alethio.shop.model.domain.Category;
-import com.alethio.shop.model.service.CategoryService;
+import com.simin.shop.model.domain.Category;
+import com.simin.shop.model.service.CategoryService;
 
 @SpringBootTest
 public class RegistTest {

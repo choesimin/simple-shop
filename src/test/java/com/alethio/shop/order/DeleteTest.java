@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.alethio.shop.model.domain.Order;
-import com.alethio.shop.model.service.OrderService;
+import com.simin.shop.model.domain.Order;
+import com.simin.shop.model.service.OrderService;
 
 @SpringBootTest
 public class DeleteTest {
